@@ -8,16 +8,14 @@ import com.example.mvc.databinding.ActivityMainBinding
 import java.util.*
 
 class MainActivity : AppCompatActivity(), Observer, View.OnClickListener {
-    lateinit var binding: ActivityMainBinding
-    lateinit var model: Model
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        model = Model()
-        model.addObserver(this)
+        Model.addObserver(this)
 
         binding.apply {
             button.setOnClickListener(this@MainActivity)
@@ -28,16 +26,16 @@ class MainActivity : AppCompatActivity(), Observer, View.OnClickListener {
 
     @SuppressLint("SetTextI18n")
     override fun update(o: Observable?, arg: Any?) {
-        binding.button.text = "Count: " + model.getValueAtIndex(0)
-        binding.button2.text = "Count: " + model.getValueAtIndex(1)
-        binding.button3.text = "Count: " + model.getValueAtIndex(2)
+        binding.button.text = "Count:" + Model.getValueAtIndex(0)
+        binding.button2.text = "Count:" + Model.getValueAtIndex(1)
+        binding.button3.text = "Count:" + Model.getValueAtIndex(2)
     }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.button -> model.setValueAtIndex(0)
-            R.id.button2 -> model.setValueAtIndex(1)
-            R.id.button3 -> model.setValueAtIndex(2)
+            R.id.button -> Model.setValueAtIndex(0)
+            R.id.button2 -> Model.setValueAtIndex(1)
+            R.id.button3 -> Model.setValueAtIndex(2)
         }
     }
 }

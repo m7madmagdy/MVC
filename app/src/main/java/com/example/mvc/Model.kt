@@ -2,8 +2,8 @@ package com.example.mvc
 
 import java.util.*
 
-class Model: Observable() {
-    val List: MutableList<Int>
+object Model: Observable() {
+    private val List: MutableList<Int>
 
     init {
         List = ArrayList(3)
@@ -13,12 +13,10 @@ class Model: Observable() {
         List.add(0)
     }
 
-    @Throws(IndexOutOfBoundsException::class)
     fun getValueAtIndex(the_index: Int): Int {
         return List[the_index]
     }
 
-    @Throws(IndexOutOfBoundsException::class)
     fun setValueAtIndex(the_index: Int) {
         List[the_index] = List[the_index] + 1
         setChanged()
