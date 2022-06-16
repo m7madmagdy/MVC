@@ -7,7 +7,6 @@ object Model: Observable() {
 
     init {
         List = ArrayList(3)
-
         List.add(0)
         List.add(0)
         List.add(0)
